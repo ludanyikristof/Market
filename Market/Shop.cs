@@ -10,7 +10,7 @@ namespace Market
     {
         //(registry) ha char kulccsal visszaadja a productot ami tartalmazza a termekhez az arat (ebbe regisztraljuk a termemeketet)
         public static Dictionary<char, Product> products = new Dictionary<char, Product>();
-        //ez  a vasarlasok egyes termekek össz arat tartalmazza
+        //ez  a vasarlasoknal egyes termekek össz arat tartalmazza
         public static  Dictionary<char, double> store = new Dictionary<char, double>();
         //egyes termekekbol mennyi van
         public static Dictionary<char, int> productAmount = new Dictionary<char, int>();
@@ -53,7 +53,7 @@ namespace Market
             }
             
             double sum = 0;
-            //meg számolja hogy a vásárolando termékek hány darab van és azt eltárolja
+            //megszámolja hogy a vásárolando termékek hány darab van és azt eltárolja
             foreach(char c in x)
             {
                 if (productAmount.ContainsKey(c))
@@ -73,14 +73,14 @@ namespace Market
                 comboDiscounts[0].GetDiscount();
             }
 
-            // kiszámolja az egyes termékekhez tartozó az össz árát amit a store ban tárulunk
+            // kiszámolja az egyes termékekhez tartozó az össz árát amit a store-ban tárolunk
             foreach(KeyValuePair<char, int> product in productAmount)
             {
 
                 store.Add(product.Key, products[product.Key].GetPrice() * product.Value);
                 
             }
-            // itt kiszámólja hogy a discount termékból mennyit kell levonni
+            // itt kiszámolja hogy a discount termékből mennyit kell levonni
             foreach(CountDiscount discount in countDiscounts)
             {
                 int dis = discount.CountDiscountAmount(productAmount);
